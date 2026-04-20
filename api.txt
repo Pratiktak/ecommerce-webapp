@@ -1,0 +1,82 @@
+* User API
+
+POST /api/auth/user/register => user register form
+- fullname 
+- email 
+- password
+
+POST /api/auth/user/login => user login form
+- email
+- password
+
+GET /api/auth/user/logout => action btn logout
+- user click logout btn
+- on click call -> /api/auth/user/logout
+---------------------------------------------------------------------------------
+* PARTNER API
+
+POST /api/partner/apply 
+- user click apply for partner btn 
+- open form -> businessName, phone, address 
+- on submit -> call /api/partner/apply
+
+ADMIN API -> PUT /api/partner/approve/:id 
+---------------------------------------------------------------------------------
+* PRODUCT API 
+
+POST /api/products/ => add product 
+- name
+- image 
+- description
+- price
+- category
+
+PUT /api/products/:id => update product
+- name
+- image 
+- description
+- price
+- category
+
+DELETE /api/products/:id => delete product with that id
+
+GET /api/products/ => get all products -> Home Page (Product Listing)
+
+GET /api/products/:id => get single product with that id
+---------------------------------------------------------------------------------
+* CART API
+
+POST /api/cart => addToCart -> product page
+- productId
+- quantity
+
+GET /api/cart => getCart -> cart page (show products, quantity, total price)
+
+PUT /api/cart => updateCartItem -> user update quantity
+- productId
+- quantity
+
+DELETE /api/cart => removeFromCart -> user removes item
+- productId
+---------------------------------------------------------------------------------
+* ORDER API
+
+- cart page will have placeorder/ordernow btn 
+
+POST api/order => createOrder
+
+- after order placed redirect user to order sucess page or myorder page
+* myoder page shows
+- past orders
+- items
+- status
+
+GET api/order/my => get user orders (show order) 
+
+ADMIN API -> GET /api/order => show list of orders
+- admin open dashbord getAllOrders
+
+PUT /api/orders/:id => admin updateOrderStatus from dropdown - ("pending", "shipped", "delivered")
+---------------------------------------------------------------------------------
+
+PAYMENT FEATURE PENDING
