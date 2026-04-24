@@ -10,7 +10,7 @@ function Register() {
         <input type="text" placeholder="Re-Enter the same Password" />
         <br />
         <button id="btn" type="submit">Create Account</button>
-        <Link to="/">Login</Link>
+        <Link to="/login">Login</Link>
       </div>
     </div>
   );

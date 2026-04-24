@@ -1,6 +1,12 @@
 import Register from "./Register";
-import { Link } from "react-router-dom";
+import { Link,useActionData,useNavigate } from "react-router-dom";
 function Login() {
+  const navigate = useNavigate();
+  const handleLogin = (e) =>{
+    e.preventDefault();
+    console.log("Logging In");
+    navigate("/home");
+  }
   return (
     <div id="container">
       <div id="loginbox">
@@ -8,7 +14,7 @@ function Login() {
         <br />
         <input type="password" placeholder="Password"/>
         <br />
-        <button id="btn" type="submit">
+        <button onClick={handleLogin}id="btn" type="submit">
           Login
         </button>
         <br />
