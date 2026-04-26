@@ -31,6 +31,7 @@ export default function Header() {
             <div id="auth-dropdown" className={open ? "open" : ""}>
               <Link to="/login" onClick={() => setOpen(false)}>Login</Link>
               <Link to="/signup" onClick={() => setOpen(false)}>Register</Link>
+              <Link to="/partner" onClick={() => setOpen(false)}>Register as Partner</Link>
             </div>
           </div>
 

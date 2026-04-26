@@ -1,4 +1,5 @@
-import {Card,Register,Header,Store,Login} from "./Components"
+//import {Card,Register,Header,Store,Login, Partner, PartnerDasboard} from "./Components"
+import { Card, Register, Header, Store, Login, Partner, PartnerDashboard } from "./Components";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { Home } from "./Pages";
 import './index.css'
@@ -12,7 +13,9 @@ function App(){
       <Route path="/home" element={< Home />}/>
       <Route path="/store" element={<Store />}/>
       <Route path="/card" element={<Card />}/>
-      <Route path=""></Route>
+      <Route path="/partner" element={<Partner />} />
+      <Route path="/partner/dashboard" element={<PartnerDashboard />} />
+      
     </Routes>
     </BrowserRouter>
   )
