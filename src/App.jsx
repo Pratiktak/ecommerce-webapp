@@ -5,10 +5,12 @@ import Store from "./Pages/Store";
 import Phone from "./Pages/Store/Phone";    
 import Laptop from "./Pages/Store/Laptop";         
 import ProductDetail from "./Pages/Store/ProductDetail";
+import { CartProvider } from "./CartContext";
 import './index.css'
 
 function App() {
   return (
+    <CartProvider>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -24,6 +26,7 @@ function App() {
         <Route path="/store/product/:id" element={<ProductDetail />} />
       </Routes>
     </BrowserRouter>
+    </CartProvider>
   )
 }
 

@@ -12,37 +12,44 @@ import VivoV70 from "../Components/Images/VivoV70.jpg";
 import Iphone17Max from "../Components/Images/Iphone17Max.jpg";
 import "../index.css";
 
+// Must match the ids in products.js exactly
+const heroPhones = [
+  { id: 1, src: A56, alt: "Samsung Galaxy A56" },
+  { id: 3, src: OppoFindX9, alt: "Oppo Find X9" },
+  { id: 2, src: S26, alt: "Samsung Galaxy S26" },
+  { id: 5, src: VivoX300U, alt: "Vivo X300U" },
+  { id: 4, src: Xiaomi17U, alt: "Xiaomi 17 Ultra" },
+  { id: 7, src: VivoV70, alt: "Vivo V70" },
+  { id: 6, src: OppoR15, alt: "Oppo R15" },
+  { id: 8, src: Iphone17Max, alt: "iPhone 17 Max" },
+];
+
 export default function Home() {
   return (
     <div id="HomePageContainer">
       <Header />
-      <h3 id="text">Meet out latest and greatest tech product</h3>
+      <h3 id="text">Meet our latest and greatest tech product</h3>
 
-     <div className="hero-wrapper">
+      <div className="hero-wrapper">
         <button className="hero-scroll-btn left" onClick={() =>
           document.querySelector('.hero-section').scrollBy({ left: -300, behavior: 'smooth' })
         }>‹</button>
 
-      <div className="hero-section">
-        
-        <img src={A56} alt="Samsung Galaxy A57 Image" />
-        <img src={OppoFindX9} alt="Oppo Find X9 Image" />
-        <img src={S26} alt="Samsung Galaxy S26 Image" />
-        <img src={VivoX300U} alt="Vivo X300U Image" />
-        <Link to="/store/product/7">
-        <img src={Xiaomi17U} alt="Xiaomi 17 Ultra Image" />
-        </ Link>
-        <img src={VivoV70} alt="Vivo V70 Image" /> 
-        <img src={OppoR15} alt="Oppo R15 Image" />
-        <img src={Iphone17Max} alt="iPhone 17 Max Image" />
-      </div>
+        <div className="hero-section">
+          {heroPhones.map((phone) => (
+            <Link to={`/store/product/${phone.id}`} key={phone.id}>
+              <img src={phone.src} alt={phone.alt} />
+            </Link>
+          ))}
+        </div>
 
-      <button className="hero-scroll-btn right" onClick={() =>
+        <button className="hero-scroll-btn right" onClick={() =>
           document.querySelector('.hero-section').scrollBy({ left: 300, behavior: 'smooth' })
         }>›</button>
       </div>
+
       <div className="hero-section">
-        <img className="hero-img" src={Laptop} alt="Image of an laptop" />
+        <img className="hero-img" src={Laptop} alt="Image of a laptop" />
       </div>
     </div>
   );

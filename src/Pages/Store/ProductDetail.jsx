@@ -1,19 +1,23 @@
 import { useParams, Link } from "react-router-dom";
-import { useState } from "react";
 import { Header } from "../../Components";
 import { phones } from "./products";
+import { useCart } from "../../CartContext";
+import CartSidebar from "../../Components/CartSidebar";
+import { useState } from "react";
 import "../../index.css";
 
-const allProducts = [...phones]; // add laptops here later
+const allProducts = [...phones];
 
 export default function ProductDetail() {
   const { id } = useParams();
   const product = allProducts.find(p => p.id === parseInt(id));
+  const { addToCart } = useCart();
   const [added, setAdded] = useState(false);
 
   if (!product) return <h2 style={{ textAlign: "center", marginTop: "40px" }}>Product not found</h2>;
 
   const handleBuy = () => {
+    addToCart(product);
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };
@@ -54,6 +58,7 @@ export default function ProductDetail() {
           </div>
         </div>
       </div>
+      <CartSidebar />
     </>
   );
 }
