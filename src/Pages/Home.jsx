@@ -1,157 +1,49 @@
 import { useState } from "react";
+import Laptop from "../Components/Images/Laptop.jpg";
 import { Link } from "react-router-dom";
 import { Header } from "../Components";
+import A56 from "../Components/Images/A56.jpg";
+import S26 from "../Components/Images/S26.jpg";
+import OppoFindX9 from "../Components/Images/OppoFindX9.jpg";
+import Xiaomi17U from "../Components/Images/Xiaomi17U.jpg";
+import VivoX300U from "../Components/Images/VivoX300U.jpg";
+import OppoR15 from "../Components/Images/OppoR15.jpg";
+import VivoV70 from "../Components/Images/VivoV70.jpg";
+import Iphone17Max from "../Components/Images/Iphone17Max.jpg";
 import "../index.css";
 
-// ── Mock product data (replace with fetch() when backend is ready) ──
-const mockProducts = [
-  {
-    id: 1,
-    name: "MacBook Pro 14",
-    price: 1999.99,
-    description: "Apple M3 chip, 18GB RAM, 512GB SSD. Built for pros who push boundaries.",
-    image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp14-spacegray-select-202310?wid=400&hei=300&fmt=jpeg&qlt=90",
-  },
-  {
-    id: 2,
-    name: "iPhone 15 Pro",
-    price: 1099.99,
-    description: "Titanium design, A17 Pro chip, and a 48MP camera system.",
-    image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium?wid=400&hei=300&fmt=jpeg&qlt=90",
-  },
-  {
-    id: 3,
-    name: "AirPods Pro",
-    price: 249.99,
-    description: "Active noise cancellation, Adaptive Audio, and up to 6 hrs battery.",
-    image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MQD83?wid=400&hei=300&fmt=jpeg&qlt=90",
-  },
-  {
-    id: 4,
-    name: "iPad Air",
-    price: 599.99,
-    description: "M1 chip, 10.9-inch Liquid Retina display, all-day battery life.",
-    image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-air-select-wifi-blue-202203?wid=400&hei=300&fmt=jpeg&qlt=90",
-  },
-  {
-    id: 5,
-    name: "Apple Watch Series 9",
-    price: 399.99,
-    description: "Advanced health sensors, S9 chip, and a stunning always-on display.",
-    image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MQDY3ref_VW_34-20230828150556?wid=400&hei=300&fmt=jpeg&qlt=90",
-  },
-  {
-    id: 6,
-    name: "Mac Mini",
-    price: 699.99,
-    description: "Compact powerhouse with M2 chip and up to 24GB unified memory.",
-    image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mac-mini-hero-202301?wid=400&hei=300&fmt=jpeg&qlt=90",
-  },
-];
-
 export default function Home() {
-  const [cart, setCart] = useState([]);
-  const [cartOpen, setCartOpen] = useState(false);
-
-  const addToCart = (product) => {
-    setCart((prev) => {
-      const existing = prev.find((item) => item.id === product.id);
-      if (existing) {
-        return prev.map((item) =>
-          item.id === product.id ? { ...item, qty: item.qty + 1 } : item
-        );
-      }
-      return [...prev, { ...product, qty: 1 }];
-    });
-  };
-
-  const removeFromCart = (id) => {
-    setCart((prev) => prev.filter((item) => item.id !== id));
-  };
-
-  const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-  const totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-
   return (
-    <>
+    <div id="HomePageContainer">
       <Header />
+      <h3 id="text">Meet out latest and greatest tech product</h3>
 
-      {/* ── Product Grid ── */}
-      <div id="product-page">
-        <h1 id="product-heading">Our Products</h1>
-        <div id="product-grid">
-          {mockProducts.map((product) => (
-            <div className="product-card" key={product.id}>
-              <div className="product-img-wrap">
-                <img src={product.image} alt={product.name} className="product-img" />
-              </div>
-              <div className="product-info">
-                <h2 className="product-name">{product.name}</h2>
-                <p className="product-desc">{product.description}</p>
-                <div className="product-footer">
-                  <span className="product-price">${product.price.toFixed(2)}</span>
-                  <button className="product-add-btn" onClick={() => addToCart(product)}>
-                    Add to Cart
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+     <div className="hero-wrapper">
+        <button className="hero-scroll-btn left" onClick={() =>
+          document.querySelector('.hero-section').scrollBy({ left: -300, behavior: 'smooth' })
+        }>‹</button>
+
+      <div className="hero-section">
+        
+        <img src={A56} alt="Samsung Galaxy A57 Image" />
+        <img src={OppoFindX9} alt="Oppo Find X9 Image" />
+        <img src={S26} alt="Samsung Galaxy S26 Image" />
+        <img src={VivoX300U} alt="Vivo X300U Image" />
+        <Link to="/store/product/7">
+        <img src={Xiaomi17U} alt="Xiaomi 17 Ultra Image" />
+        </ Link>
+        <img src={VivoV70} alt="Vivo V70 Image" /> 
+        <img src={OppoR15} alt="Oppo R15 Image" />
+        <img src={Iphone17Max} alt="iPhone 17 Max Image" />
       </div>
 
-      {/* ── Cart Button ── */}
-      <button id="cart-btn" onClick={() => setCartOpen(true)}>
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
-          <line x1="3" y1="6" x2="21" y2="6" />
-          <path d="M16 10a4 4 0 01-8 0" />
-        </svg>
-        {totalItems > 0 && <span id="cart-count">{totalItems}</span>}
-      </button>
-
-      {/* ── Cart Sidebar Overlay ── */}
-      {cartOpen && (
-        <div id="cart-overlay" onClick={() => setCartOpen(false)} />
-      )}
-
-      {/* ── Cart Sidebar ── */}
-      <div id="cart-sidebar" className={cartOpen ? "open" : ""}>
-        <div id="cart-header">
-          <h2 id="cart-title">Your Cart</h2>
-          <button id="cart-close" onClick={() => setCartOpen(false)}>✕</button>
-        </div>
-
-        {cart.length === 0 ? (
-          <div id="cart-empty">
-            <span style={{ fontSize: "40px" }}>🛒</span>
-            <p>Your cart is empty</p>
-          </div>
-        ) : (
-          <>
-            <div id="cart-items">
-              {cart.map((item) => (
-                <div className="cart-item" key={item.id}>
-                  <img src={item.image} alt={item.name} className="cart-item-img" />
-                  <div className="cart-item-info">
-                    <p className="cart-item-name">{item.name}</p>
-                    <p className="cart-item-price">${item.price.toFixed(2)} × {item.qty}</p>
-                  </div>
-                  <button className="cart-item-remove" onClick={() => removeFromCart(item.id)}>✕</button>
-                </div>
-              ))}
-            </div>
-
-            <div id="cart-footer">
-              <div id="cart-total">
-                <span>Total</span>
-                <span>${totalPrice.toFixed(2)}</span>
-              </div>
-              <button id="cart-checkout-btn">Checkout</button>
-            </div>
-          </>
-        )}
+      <button className="hero-scroll-btn right" onClick={() =>
+          document.querySelector('.hero-section').scrollBy({ left: 300, behavior: 'smooth' })
+        }>›</button>
       </div>
-    </>
+      <div className="hero-section">
+        <img className="hero-img" src={Laptop} alt="Image of an laptop" />
+      </div>
+    </div>
   );
 }

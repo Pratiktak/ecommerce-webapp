@@ -15,6 +15,7 @@ export default function Header() {
             <li><Link to="/mobile">Mobile</Link></li>
             <li><Link to="/accessories">Accessories</Link></li>
             <li><Link to="/support">Support</Link></li>
+            <li><Link to="/home">Home Page</Link></li>
           </ul>
 
           <div id="navbar-auth">
