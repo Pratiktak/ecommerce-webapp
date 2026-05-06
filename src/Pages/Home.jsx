@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Laptop from "../Components/Images/Laptop.jpg";
 import { Link } from "react-router-dom";
 import { Header } from "../Components";
@@ -14,7 +14,6 @@ import { getAllProducts } from "../api/products";
 import { addToCart } from "../api/cart";
 import "../index.css";
 
-// Must match the ids in products.js exactly
 const heroPhones = [
   { id: 1, src: A56, alt: "Samsung Galaxy A56" },
   { id: 3, src: OppoFindX9, alt: "Oppo Find X9" },
@@ -26,30 +25,29 @@ const heroPhones = [
   { id: 8, src: Iphone17Max, alt: "iPhone 17 Max" },
 ];
 
-useEffect(() => {
-  const fetch = async () => {
-    const data = await getAllProducts();
-    setProducts(data);
-  }
-  fetch();
-}, []);
-
-// call addToCart when user clicks Add to Cart:
-const handleAddToCart = async (productId) => {
-  await addToCart(productId, 1);
-}
-
 export default function Home() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const data = await getAllProducts();
+      setProducts(data);
+    };
+    fetchProducts();
+  }, []);
+
+  const handleAddToCart = async (productId) => {
+    await addToCart(productId, 1);
+  };
+
   return (
     <div id="HomePageContainer">
       <Header />
       <h3 id="text">Meet our latest and greatest tech product</h3>
-
       <div className="hero-wrapper">
         <button className="hero-scroll-btn left" onClick={() =>
           document.querySelector('.hero-section').scrollBy({ left: -300, behavior: 'smooth' })
         }>‹</button>
-
         <div className="hero-section">
           {heroPhones.map((phone) => (
             <Link to={`/store/product/${phone.id}`} key={phone.id}>
@@ -57,12 +55,10 @@ export default function Home() {
             </Link>
           ))}
         </div>
-
         <button className="hero-scroll-btn right" onClick={() =>
           document.querySelector('.hero-section').scrollBy({ left: 300, behavior: 'smooth' })
         }>›</button>
       </div>
-
       <div className="hero-section">
         <img className="hero-img" src={Laptop} alt="Image of a laptop" />
       </div>
