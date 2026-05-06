@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { registerUser } from "../api/auth";
 function Register() {
   return (
     <div id="container">

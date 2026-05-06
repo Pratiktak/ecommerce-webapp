@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
+import { logoutUser } from "../api/auth";
 import "../index.css"
 
 export default function Header() {
+  const handleLogout = async () => {
+  await logoutUser();
+  navigate("/");
+}
   const [open, setOpen] = useState(false)
 
   return (

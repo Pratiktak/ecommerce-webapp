@@ -10,6 +10,8 @@ import VivoX300U from "../Components/Images/VivoX300U.jpg";
 import OppoR15 from "../Components/Images/OppoR15.jpg";
 import VivoV70 from "../Components/Images/VivoV70.jpg";
 import Iphone17Max from "../Components/Images/Iphone17Max.jpg";
+import { getAllProducts } from "../api/products";
+import { addToCart } from "../api/cart";
 import "../index.css";
 
 // Must match the ids in products.js exactly
@@ -23,6 +25,19 @@ const heroPhones = [
   { id: 6, src: OppoR15, alt: "Oppo R15" },
   { id: 8, src: Iphone17Max, alt: "iPhone 17 Max" },
 ];
+
+useEffect(() => {
+  const fetch = async () => {
+    const data = await getAllProducts();
+    setProducts(data);
+  }
+  fetch();
+}, []);
+
+// call addToCart when user clicks Add to Cart:
+const handleAddToCart = async (productId) => {
+  await addToCart(productId, 1);
+}
 
 export default function Home() {
   return (

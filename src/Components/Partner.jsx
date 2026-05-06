@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../index.css";
+import { applyAsPartner } from "../api/partner";
 
 export default function Partner() {
   const navigate = useNavigate();
@@ -26,6 +27,12 @@ export default function Partner() {
     setStep(2);
     // TODO: trigger backend to send verification email
     console.log("Sending verification email to:", formData.email);
+
+    const handleSubmit = async (e) => {
+  e.preventDefault();
+  const data = await applyAsPartner({ businessName, phone, address });
+  if (data.success) setStep(2);
+}
   };
 
   // Step 2 — verify the code

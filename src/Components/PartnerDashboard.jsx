@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { Header } from ".";
 import "../index.css";
+import { addProduct } from "../api/products";
 
 export default function PartnerDashboard() {
   const [preview, setPreview] = useState(null);
@@ -35,6 +36,16 @@ export default function PartnerDashboard() {
       setPreview(null);
       setFormData({ name: "", price: "", description: "" });
     }, 2000);
+
+    const handleSubmit = async (e) => {
+  e.preventDefault();
+  const formData = new FormData();
+  formData.append("name", formData.name);
+  formData.append("price", formData.price);
+  formData.append("description", formData.description);
+  formData.append("image", imageFile);
+  await addProduct(formData);
+}
   };
 
   return (
