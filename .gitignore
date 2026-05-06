@@ -28,6 +28,6 @@ dist-ssr
 *.sw?
 
 # env variables file
-.env
-backend/.env
-frontend/.env
+# .env
+# backend/.env
+# frontend/.env
